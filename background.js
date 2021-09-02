@@ -1,13 +1,16 @@
 const INPUT_MAX_LENGTH = 10;
 
 function doQuery(input) {
-    const trimmedInput = trimInput(input);
+    const trimmedInput = processInput(input);
     let newUrl = "https://boshiamy.com/liuquery.php?f=1&q=" + trimmedInput;
     chrome.tabs.create({ url: newUrl });
 }
 
-function trimInput(input) {
-    return (input && input.length > INPUT_MAX_LENGTH) ? input.substring(0, INPUT_MAX_LENGTH).trim() : input.trim();
+function processInput(input) {
+    // 1. only allow chinese characters and full width punctuations
+    // 2. limit query string length to 10
+    let replaced = input ? input.trim().replace(/[^\u4E00-\u9FA5\uFF01-\uFF5E]/g, '') : '';
+    return replaced.length > INPUT_MAX_LENGTH ? replaced.substring(0, INPUT_MAX_LENGTH): replaced;
 }
 
 chrome.runtime.onInstalled.addListener(() => {
