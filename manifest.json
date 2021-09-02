@@ -1,0 +1,19 @@
+{
+  "name": "嘸蝦米線上查碼程式",
+  "description": "嘸蝦米線上查碼程式",
+  "version": "0.1",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "tabs",
+    "contextMenus"
+  ],
+  "icons": {
+    "16": "/images/boshiamy_icon.png",
+    "32": "/images/boshiamy_icon.png",
+    "48": "/images/boshiamy_icon.png",
+    "128": "/images/boshiamy_icon.png"
+  }
+}
